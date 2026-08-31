@@ -1,0 +1,21 @@
+# Virtual environments
+venv/
+venv_old/
+
+# Environment variables / API keys
+.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Database
+*.db
+
+# IDE
+.vscode/
+
+# Temporary files
+tempCodeRunnerFile.python
+# Uploaded audio files
+backend/uploads/
