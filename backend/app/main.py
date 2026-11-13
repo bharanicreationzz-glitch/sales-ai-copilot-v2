@@ -5,6 +5,7 @@ from models.lead import Lead
 from models.call_record import CallRecord
 from api.call_record import router as call_record_router
 from fastapi.middleware.cors import CORSMiddleware
+from config import CORS_ORIGINS
 
 
 # Create database tables
@@ -19,10 +20,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://localhost:5174"
-    ],
+    allow_origins=CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

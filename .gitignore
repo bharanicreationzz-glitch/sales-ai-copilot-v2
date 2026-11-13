@@ -1,21 +1,39 @@
-# Virtual environments
+# Python environments
 venv/
 venv_old/
+.venv/
 
-# Environment variables / API keys
+# Secrets
 .env
+.env.*
+!.env.example
 
 # Python cache
 __pycache__/
 *.py[cod]
 
-# Database
+# Databases
 *.db
+*.sqlite
+*.sqlite3
 
 # IDE
 .vscode/
 
-# Temporary files
-tempCodeRunnerFile.python
-# Uploaded audio files
+# Frontend dependencies and builds
+frontend/node_modules/
+frontend/dist/
+
+# Audio recordings
 backend/uploads/
+*.wav
+*.mp3
+*.m4a
+
+# Transcription outputs
+*_result.json
+*_results.json
+
+# Logs and temporary files
+*.log
+tempCodeRunnerFile.python

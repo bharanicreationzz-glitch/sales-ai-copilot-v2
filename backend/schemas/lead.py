@@ -4,20 +4,55 @@ from typing import Optional, Literal
 from pydantic import BaseModel
 
 
+# --------------------------------------------------
+# PRODUCT CATALOG
+# --------------------------------------------------
+
 Product = Literal[
+    # Agriculture
     "Polyhex",
     "Checks Mesh",
     "Trinity Fence Pole",
+    "FRP Rod",
+    "PET Wire",
+    "Shade Net",
+
+    # Decor
     "Lato Fence",
+    "Indian Trellis",
+    "American Trellis",
+    "Australian Trellis",
+    "Semi Trellis",
     "Privezy Wall",
+    "Antiqo Fence",
+
+    # Security
+    "Razor Wire",
+    "Concertina Coil",
+
+    # Existing product value — retained for compatibility
     "Plant Wire",
 ]
+
+
+ProductCategory = Literal[
+    "Agriculture",
+    "Decor",
+    "Security",
+    "Other",
+]
+
+
+# --------------------------------------------------
+# CUSTOMER DETAILS
+# --------------------------------------------------
 
 CustomerCategory = Literal[
     "B2B",
     "B2C",
     "Dealer",
 ]
+
 
 Language = Literal[
     "English",
@@ -28,6 +63,7 @@ Language = Literal[
     "Hindi",
 ]
 
+
 LeadPotential = Literal[
     "Hot",
     "Warm",
@@ -35,10 +71,15 @@ LeadPotential = Literal[
 ]
 
 
+# --------------------------------------------------
+# CREATE LEAD
+# --------------------------------------------------
+
 class LeadCreate(BaseModel):
     customer_name: str
     phone: str
 
+    # Core CRM fields
     product: Optional[Product] = None
     customer_category: Optional[CustomerCategory] = None
     language: Optional[Language] = None
@@ -52,6 +93,26 @@ class LeadCreate(BaseModel):
     notes: Optional[str] = None
     ai_summary: Optional[str] = None
 
+    # Product qualification fields
+    product_category: Optional[ProductCategory] = None
+    product_variant: Optional[str] = None
+    product_specification: Optional[str] = None
+
+    # Customer requirement
+    application: Optional[str] = None
+    required_length: Optional[str] = None
+    required_height: Optional[str] = None
+    required_thickness: Optional[str] = None
+
+    # Purchase details
+    unit: Optional[str] = None
+    budget: Optional[str] = None
+    installation_required: Optional[bool] = None
+
+
+# --------------------------------------------------
+# LEAD RESPONSE
+# --------------------------------------------------
 
 class LeadResponse(BaseModel):
     id: int
@@ -59,6 +120,7 @@ class LeadResponse(BaseModel):
     customer_name: str
     phone: str
 
+    # Core CRM fields
     product: Optional[str] = None
     customer_category: Optional[str] = None
     language: Optional[str] = None
@@ -71,6 +133,22 @@ class LeadResponse(BaseModel):
 
     notes: Optional[str] = None
     ai_summary: Optional[str] = None
+
+    # Product qualification fields
+    product_category: Optional[str] = None
+    product_variant: Optional[str] = None
+    product_specification: Optional[str] = None
+
+    # Customer requirement
+    application: Optional[str] = None
+    required_length: Optional[str] = None
+    required_height: Optional[str] = None
+    required_thickness: Optional[str] = None
+
+    # Purchase details
+    unit: Optional[str] = None
+    budget: Optional[str] = None
+    installation_required: Optional[bool] = None
 
     model_config = {
         "from_attributes": True
